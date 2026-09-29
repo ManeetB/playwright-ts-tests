@@ -30,6 +30,7 @@ This project contains examples of common real-world Playwright automation scenar
 - Reusable test structure
 - Git/GitHub workflow
 
+```text
 playwright-ts-tests/
 │
 ├── test/
@@ -47,6 +48,7 @@ playwright-ts-tests/
 ├── package-lock.json
 ├── README.md
 └── .gitignore
+```
 
 
 The project includes examples for:
