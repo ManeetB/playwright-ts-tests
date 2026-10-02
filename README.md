@@ -1,6 +1,8 @@
 # Playwright TypeScript Automation Tests
 
-Benginner friendly Playwright automation tests built with **TypeScript** to demonstrate modern UI test automation, asynchronous handling, reusable test data, handling child windows
+Benginner friendly Playwright automation tests built with **TypeScript** to demonstrate modern UI test automation, asynchronous handling, reusable test data, handling child windows.
+
+
 
 ## Tech Stack
 
@@ -15,33 +17,42 @@ Benginner friendly Playwright automation tests built with **TypeScript** to demo
 
 This project contains examples of common real-world Playwright automation scenarios:
 
-- UI automation using Playwright
-- TypeScript-based test development
+-
+- UI automation using Playwright + TypeScript
+- API testing using Playwright APIRequestContext
+- Page Object Model (POM)
+- Reusable API helper classes
+- External test data management
+- Strongly typed TypeScript test data
+- Dependency Injection for API helpers
+- Browser context and child-window handling
 - Positive and negative login scenarios
-- Test data separation
-- Playwright locators
+- API login and order creation
+- Reusable test configuration
+- TypeScript-based test development
 - Assertions using Playwright `expect`
 - Handling child windows / multiple pages
 - Browser context management
-- `waitForEvent()`
-- `Promise.all()`
 - Handling asynchronous operations
 - Page load synchronization
-- Reusable test structure
-- Git/GitHub workflow
+
 
 ```text
-playwright-ts-tests/
-│
-├── test/
-│   └── data/
-│       └── user-login.ts
+playwright-Tests/
 │
 ├── tests/
-│   └── login-test.spec.ts
-│
-├── helpers/
-│   └── APIHelpers.ts
+│   ├── api/
+│   │   └── api_ui_order.spec.ts
+│   │
+│   ├── data/
+│   │   ├── order-data.ts
+│   │   └── user-login.ts
+│   │
+│   ├── helpers/
+│   │   └── APIHelpers.ts
+│   │
+│   └── web/
+│       └── login-test.spec.ts
 │
 ├── playwright.config.ts
 ├── package.json
@@ -57,6 +68,8 @@ Invalid login
 Valid login
 Login test data stored separately from test logic
 Validation of UI elements after login
+API valid user login
+API based order creation and validation.
 
 About:
 
