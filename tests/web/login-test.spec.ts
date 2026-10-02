@@ -1,7 +1,6 @@
 import { test, expect, Page, request, APIRequestContext } from "@playwright/test"
-import {loginData} from "./data/user-login"
-let globalOrderid: string;
-import { APIHelpers } from "./helpers/APIHelpers";
+import {loginData} from "../data/user-login"
+import { APIHelpers } from "../helpers/APIHelpers";
 
 
 
@@ -110,7 +109,7 @@ test("Handle the child window", async ({ browser }) => {
 
     // Click the link that opens the child window.
     await page1.getByRole("link", {
-        name: loginData.childPageLink,
+        name: loginData.newPage.childPageLink,
     }).click();
 
     /*
@@ -123,7 +122,7 @@ test("Handle the child window", async ({ browser }) => {
 
     
     // validate the title of the chile page.
-    await expect(newPage).toHaveTitle(loginData.childpageTitle)
+    await expect(newPage).toHaveTitle(loginData.newPage.childpageTitle)
 
     // Get the URL of the child window.
     console.log("Child window URL:", newPage.url());
@@ -162,7 +161,7 @@ test("Handle the child window using Promise.all", async ({ browser }) => {
         browserContext.waitForEvent("page", { timeout: 5000 }),
 
         page1.getByRole("link", {
-            name: loginData.childPageLink,
+            name: loginData.newPage.childPageLink,
         }).click(),
     ]);
 
@@ -171,11 +170,11 @@ test("Handle the child window using Promise.all", async ({ browser }) => {
 
     // Wait for the expected heading to be available on the child page.
     await page2.getByRole("heading", {
-        name: loginData.childPageHeading,
+        name: loginData.newPage.childPageHeading,
     }).waitFor();
 
     // Validate that the child page contains the expected title.
-    await expect(page2).toHaveTitle(loginData.childpageTitle);
+    await expect(page2).toHaveTitle(loginData.newPage.childpageTitle);
 
     // Get the URL of the child page.
     console.log("Child window URL:", page2.url());

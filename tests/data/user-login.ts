@@ -13,6 +13,7 @@ export const loginData = {
         username:"Valid_user@example.com",
         password: "ValidPassword",
         item: "item_name",
+        baseURL: "'ttps://rahulshettyacademy.com/api/ecom/auth/login"
     },
 
     newPage: {

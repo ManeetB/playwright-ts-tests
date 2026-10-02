@@ -1,7 +1,9 @@
 import { APIRequestContext } from "@playwright/test"
+import { loginData } from "../data/user-login";
+
 
 export class APIHelpers {
-    private baseAPPLoginURL = 'https://rahulshettyacademy.com/api/ecom/auth/login'
+    private baseAPPLoginURL = loginData.validLogin.baseURL;
     private apiContext: APIRequestContext;
 
     constructor(apiContext: APIRequestContext) {
@@ -9,14 +11,14 @@ export class APIHelpers {
     }
 
     //login to application
-    async webappLogin() : Promise<string> {
+    async webappLogin(): Promise<string> {
 
         const response = await this.apiContext.post(this.baseAPPLoginURL, {
 
             data:
             {
-                userEmail: "today@yopmail.com",
-                userPassword: "Test@1234"
+                userEmail: loginData.validLogin.username,
+                userPassword: loginData.validLogin.password
             }
         })
 
@@ -32,32 +34,33 @@ export class APIHelpers {
 
     //create an order
 
-    async createOrder(createOrderURL: string) :Promise<any> {
-        const thisToken = await this.webappLogin()
-        const thisResponse = await this.apiContext.post(createOrderURL, {
-            data:
-            {
-                orders: [
-                    {
-                        country: "Cuba",
-                        productOrderedId: "6960eae1c941646b7a8b3ed3"
-                    }
-                ]
+    async createOrder(
+        token: string,
+        createOrderURL: string,
+        order: { country: string; productOrderedId: string }
+    ): Promise<string[]>  {
+
+        const response = await this.apiContext.post(createOrderURL, {
+
+            data: {
+                orders: [order]
             },
 
             headers: {
-                'Authorization': thisToken,
-                'Content-Type': 'application/json'
+                "Authorization": token,
+                "Content-Type": "application/json"
             }
+        });
 
-        })
-
-        if (!thisResponse.ok()) {
-            throw new Error(`The order generation is failed with status ${thisResponse.status()}`)
+        if (!response.ok()) {
+            throw new Error(
+                `Order generation failed with status ${response.status()}`
+            );
         }
-        const thisJSON = await thisResponse.json()
-        return thisJSON.orders
 
+        const json = await response.json();
+
+        return json.orders;
     }
 
 }
