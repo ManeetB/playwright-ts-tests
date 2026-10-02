@@ -17,7 +17,6 @@ Benginner friendly Playwright automation tests built with **TypeScript** to demo
 
 This project contains examples of common real-world Playwright automation scenarios:
 
--
 - UI automation using Playwright + TypeScript
 - API testing using Playwright APIRequestContext
 - Page Object Model (POM)
@@ -36,6 +35,23 @@ This project contains examples of common real-world Playwright automation scenar
 - Handling asynchronous operations
 - Page load synchronization
 
+
+##  API Testing
+
+The framework uses Playwright's `APIRequestContext` for API testing.
+
+Current API coverage includes:
+
+- API authentication
+- Authentication token handling
+- Order creation
+- API response validation
+- Reusable API helper methods
+- Externalized API test data
+- TypeScript type definitions for API test data
+
+The API request context is injected into the `APIHelpers` class using
+Dependency Injection.
 
 ```text
 playwright-Tests/
